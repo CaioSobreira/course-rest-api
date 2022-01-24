@@ -1,6 +1,5 @@
 package br.com.dicasdeumdev.demo.resources;
 
-import br.com.dicasdeumdev.demo.domain.User;
 import br.com.dicasdeumdev.demo.domain.dto.UserDTO;
 import br.com.dicasdeumdev.demo.services.UserService;
 import org.modelmapper.ModelMapper;

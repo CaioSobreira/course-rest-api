@@ -30,8 +30,9 @@ class UserServiceImplTest {
     public static final String NAME = "Valdir";
     public static final String EMAIL = "valdir@mail.com";
     public static final String PASSWORD = "123";
-    public static final String OBJECT_NOT_FOUND = "Object not found";
     public static final int INDEX = 0;
+
+    public static final String OBJECT_NOT_FOUND = "Object not found";
     public static final String E_MAIL_ALREADY_IN_USE = "E-mail already in use";
 
     @InjectMocks
