@@ -3,6 +3,7 @@ package br.com.dicasdeumdev.demo.services.impl;
 import br.com.dicasdeumdev.demo.domain.User;
 import br.com.dicasdeumdev.demo.domain.dto.UserDTO;
 import br.com.dicasdeumdev.demo.repositories.UserRepository;
+import br.com.dicasdeumdev.demo.services.exceptions.DataIntegrityViolationException;
 import br.com.dicasdeumdev.demo.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -108,6 +109,19 @@ class UserServiceImplTest {
         assertEquals(NAME, response.getName());
         assertEquals(EMAIL, response.getEmail());
         assertEquals(PASSWORD, response.getPassword());
+    }
+
+    @Test
+    void whenCreateThenReturnADataIntegrityViolationException() {
+        when(userRepository.findByEmail(any())).thenReturn(optionalUser);
+
+        try{
+            optionalUser.get().setId(2);
+            userService.create(userDTO);
+        } catch (Exception ex){
+            assertEquals(DataIntegrityViolationException.class, ex.getClass());
+            assertEquals("E-mail already in use", ex.getMessage());
+        }
     }
 
     @Test
